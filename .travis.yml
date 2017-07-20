@@ -10,4 +10,12 @@ services:
 script:
   # Build Docker Container
   - docker build -t todoist-python .
+
+  # Test importing todoist module  
+  - docker run -it --rm --name python-test todoist-python python -c "import todoist"
+
+  # Test that I can init Todoist Library with an api key
+  - |
+    docker run -it --rm --name python-test todoist-python python -c "import todoist
+    todoist.TodoistAPI('api_key')"
 ...
