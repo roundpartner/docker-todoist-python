@@ -17,5 +17,7 @@ script:
   # Test that I can init Todoist Library with an api key
   - |
     docker run -it --rm --name python-test todoist-python python -c "import todoist
-    todoist.TodoistAPI('api_key')"
+    api = todoist.TodoistAPI()
+    if type(api) != todoist.api.TodoistAPI:
+      raise Exception('API was %s but todoist.api.TodoistAPI was expected' % type(api))"
 ...
